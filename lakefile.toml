@@ -1,0 +1,10 @@
+name = "get-environment"
+version = "0.0.0"
+defaultTargets = ["System.IO.GetEnvironment"]
+
+[[lean_lib]]
+name = "System.IO.GetEnvironment"
+
+[[lean_exe]]
+name = "get-environment"
+root = "Main"
