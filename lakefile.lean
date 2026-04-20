@@ -11,7 +11,6 @@ package «GetEnvironment» where
 @[default_target]
 lean_exe «get_environemnt_exe» where
   root := `Main
-  moreLinkArgs := #["-lglfw", "-Wl,--allow-shlib-undefined"]
 
 target native.o (pkg : NPackage __name__) : FilePath := do
   let native_src := "native.c"

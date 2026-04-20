@@ -1,31 +1,12 @@
+-- Pure FFI: maps to `c_add(uint32_t, uint32_t)` in native.c
+@[extern "c_add"]
+opaque cAdd (a b : UInt32) : UInt32
 
-@[extern "lean_glfwInit"]
-opaque glfwInit : IO Bool
-
-@[extern "lean_glfwTerminate"]
-opaque glfwTerminate : IO Unit
-
-opaque WindowP : NonemptyType
-def Window := WindowP.type
-
-@[extern "lean_glfwCreateWindow"]
-opaque glfwCreateWindow (width : UInt32) (height : UInt32) (title : String) : IO Window
-
-@[extern "lean_glfwWindowShouldClose"]
-opaque glfwWindowShouldClose (win : Window) : IO Bool
-
-@[extern "lean_glfwPollEvents"]
-opaque glfwPollEvents : IO Unit
+-- IO FFI: maps to `c_greet(lean_obj_arg, lean_obj_arg)` in native.c
+@[extern "c_greet"]
+opaque cGreet (name : String) : IO Unit
 
 def main : IO Unit := do
-  unless (<- glfwInit) do
-    (<- IO.getStderr).putStrLn "Cannot initialize GLFW!!"
-    return -- TODO: how to exit with EXIT_FAILURE?
-
-  let win <- glfwCreateWindow 800 600 "My GLFW window's title"
-
-  while (not (<- glfwWindowShouldClose win)) do
-    glfwPollEvents
-
-  glfwTerminate
-  (<- IO.getStdout).putStrLn "Goodbye."
+  let sum := cAdd 21 21
+  IO.println s!"cAdd 21 21 = {sum}"
+  cGreet "World"
