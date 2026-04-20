@@ -10,9 +10,8 @@ package «GetEnvironment» where
 
 
 target native.o (pkg : NPackage __name__) : FilePath := do
-  let native_src := "native.c"
-  let native_c := pkg.dir / native_src
-  let native_o := pkg.buildDir / "native.o"
+  let native_c := pkg.dir / "System" / "IO" / "native.c"
+  let native_o := pkg.staticLibDir / "native.o"
 
   -- TIP: About 'buildFileAfterDep', see
   -- https://github.com/leanprover/lean4/blob/dfdd682c017a96896d8cfa683f510dd2e0491752/src/lake/Lake/Build/Common.lean#L538.
