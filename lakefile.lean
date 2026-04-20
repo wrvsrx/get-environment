@@ -7,7 +7,7 @@ open System Lake DSL
 
 package «GetEnvironment» where
   -- add package configuration options here
-
+  version := v!"0.1.0"
 
 target native.o (pkg : NPackage __name__) : FilePath := do
   let native_c := pkg.dir / "System" / "IO" / "native.c"
