@@ -5,7 +5,7 @@ open System Lake DSL
 -- https://github.com/leanprover/lean4/blob/master/src/lake/README.md and the
 -- directory `examples/` in there.
 
-package «GetEnvironment» where
+package GetEnvironment where
   -- add package configuration options here
   version := v!"0.1.0"
 
