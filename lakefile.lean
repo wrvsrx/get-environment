@@ -31,11 +31,11 @@ extern_lib native (pkg : NPackage __name__) := do
   let native_o <- fetch <| pkg.target ``native.o
   buildStaticLib (pkg.buildDir / "lib" / name) #[native_o]
 
+@[default_target]
 lean_lib «GetEnvironment» where
   roots := #[`System.IO.GetEnvironment]
   needs := #[native]
 
-@[default_target]
-lean_exe «get_environemnt_exe» where
+lean_exe «get-environment» where
   root := `Main
   needs := #[«GetEnvironment»]
