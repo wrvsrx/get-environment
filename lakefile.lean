@@ -36,6 +36,7 @@ lean_lib «GetEnvironment» where
   roots := #[`System.IO.GetEnvironment]
   needs := #[native]
 
+@[default_target]
 lean_exe «get-environment» where
   root := `Main
   needs := #[«GetEnvironment»]
